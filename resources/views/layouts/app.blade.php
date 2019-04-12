@@ -2,24 +2,19 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }} | @yield('title')</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/core/jquery.min.js') }}" defer></script>
-    <script src="{{ asset('js/core/popper.min.js') }}" defer></script>
-    <script src="{{ asset('js/core/bootstrap-material-design.min.js') }}"></script>
-    <script src="https://unpkg.com/default-passive-events" defer></script>
-    <script src="{{ asset('js/plugins/perfect-scrollbar.jquery.min.js') }}" defer></script>
+   
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-    @yield('specified_js')
+    
     <!-- Fonts -->
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css"> -->
@@ -33,15 +28,16 @@
 </head>
 <body>
     <div class="wrapper ">
-        <div class="sidebar" data-color="purple" data-background-color="black" data-image="{{ asset('images/sidebar/sidebar-2.jpg') }}">
+        <div class="sidebar" data-color="purple" data-background-color="black" data-image="{{ asset('img/sidebar-2.jpg') }}">
           <!--
             Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
             Tip 2: you can also add an image using data-image tag
         -->
           <div class="logo">
+
             <a href="{{ route('home') }}" class="simple-text logo-normal">
-              PC-Art
+              <i class="fas fa-cart-arrow-down mr-3" style="font-size: 25pt;"></i> PC-Art
             </a>
           </div>
           <div class="sidebar-wrapper">
@@ -68,7 +64,7 @@
           <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
             <div class="container-fluid">
               <div class="navbar-wrapper">
-                <a class="navbar-brand" href="#">Dashboard</a>
+                <!-- <a class="navbar-brand" href="#">Dashboard</a > -->
               </div>
               <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation" data-target="#navigation-example">
                 <span class="sr-only">Toggle navigation</span>
@@ -190,10 +186,20 @@
 
         </div>
     </div>
+     <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/core/jquery.min.js') }}" ></script>
+    <script src="{{ asset('js/core/popper.min.js') }}" ></script>
+    <script src="{{ asset('js/core/bootstrap-material-design.min.js') }}"></script>
+    <script src="https://unpkg.com/default-passive-events" ></script>
+    <script src="{{ asset('js/plugins/perfect-scrollbar.jquery.min.js') }}" ></script>
+    <script src="{{ asset('js/plugins/bootstrap-notify.js') }}"></script>
+    <script src="{{ asset('js/material-dashboard.js?v=2.1.0') }}"></script>
+    @yield('specified_js')
     <script>
-                    const x = new Date().getFullYear();
-                    let date = document.getElementById('date');
-                    date.innerHTML = '&copy; ' + x + date.innerHTML;
+          const x = new Date().getFullYear();
+          let date = document.getElementById('date');
+          date.innerHTML = '&copy; ' + x + date.innerHTML;
     </script>
     <script>
     $(document).ready(function() {

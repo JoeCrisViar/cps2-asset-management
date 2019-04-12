@@ -18,7 +18,19 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::all();
+
+        $itemOrders = [];
+        foreach ($orders as $key => $order) {
+
+            $itemOrders[$key] = ItemOrder::all()->where('order_id', $order->id);
+
+        }
+        
+        $items = Item::all();
+
+
+        return view('iamAdmin.transactions.index', compact('orders', 'items' ,'itemOrders'));
     }
 
     /**

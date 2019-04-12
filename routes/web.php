@@ -61,3 +61,7 @@ Route::get('/mytransactions/{order}/serials{item}', 'OrderController@mytransacti
 // Admin Route
 
 Route::get('/admin', 'AdminController@index');
+
+Route::get('/userslist/{role}', 'UserController@user_home')->name('user.home');
+
+Route::resource('/transactions', 'OrderController');

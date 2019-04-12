@@ -23,8 +23,8 @@
         @forelse($items as $item)
             <!-- Check if item has available stock -->
             @if($item->serials->where('status', 'good')->where('is_sold', 0)->count() > 0)
-                <div class="col-md-3">
-                    <div class="card" style="width: 100%; height: 21rem;">
+                <div class="col-md-4">
+                    <div class="card" style="width: 100%; height: 95%;">
                         <div class="card-wrapper">
                                    <a href="{{ route('catalog.show', $item->id) }}">
                                         <img class="card-img-top" src="{{ asset('images/' . $item->image_path) }}" alt="Card image cap">
@@ -36,7 +36,7 @@
                                             </a>
                                     </h6>
                                     
-                                    <p class="card-price"><a href="{{ route('catalog.show', $item->id) }}">&#8369; {{ $item->price }}</a></p>
+                                    <p class="card-price"><a href="{{ route('catalog.show', $item->id) }}"><h5>&#8369; {{ $item->price }}</h5></a></p>
                                     
                                 </div>
                             <div class="push"></div>

@@ -15,9 +15,22 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+
+
+        
     }
 
+    public function user_home($role)
+    {
+        if ($role == 0) {
+            $users = User::all();
+        }else{
+            $users = User::all()->where('role_id', $role);
+        }
+
+        
+        return view('iamAdmin.users.index', compact('users'));
+    }
     /**
      * Show the form for creating a new resource.
      *
