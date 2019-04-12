@@ -24,7 +24,7 @@
             <!-- Check if item has available stock -->
             @if($item->serials->where('status', 'good')->where('is_sold', 0)->count() > 0)
                 <div class="col-md-3">
-                    <div class="card" style="width: 15rem; height: 22rem;">
+                    <div class="card" style="width: 100%; height: 21rem;">
                         <div class="card-wrapper">
                                    <a href="{{ route('catalog.show', $item->id) }}">
                                         <img class="card-img-top" src="{{ asset('images/' . $item->image_path) }}" alt="Card image cap">

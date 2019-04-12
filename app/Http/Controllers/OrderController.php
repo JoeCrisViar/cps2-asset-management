@@ -90,8 +90,15 @@ class OrderController extends Controller
     public function mytransaction()
     {
         $orders = Order::all()->where('user_id', Auth::user()->id);
+        $itemOrders = [];
+        foreach ($orders as $key => $order) {
 
-        $itemOrders = ItemOrder::all();
+            $itemOrders[$key] = ItemOrder::all()->where('order_id', $order->id);
+
+        }
+
+
+        // $itemOrders = ItemOrder::all();
         
         $items = Item::all();
         
@@ -100,8 +107,9 @@ class OrderController extends Controller
 
     public function show_mytransaction(Order $order)
     {
-        $itemOrders = ItemOrder::all();
-
+        
+        $itemOrders = ItemOrder::all()->where('order_id', $order->id);
+        
         $items = Item::all();
         
         return view('users.show_mytransaction', compact('order', 'items' ,'itemOrders'));

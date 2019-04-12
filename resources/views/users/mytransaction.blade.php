@@ -17,7 +17,7 @@
                 </div>
                 <div class="card-body">
                   <!-- Loop Here -->
-                  @forelse($orders as $order)
+                  @forelse($orders as $key => $order)
                    <div class="card">
                     <div class="card-body">
                       <div class="row">
@@ -29,9 +29,9 @@
                       </div>
                       <hr>
                       @php
-                          $itemOrders->where('order_id', $order->id);
+                          
                       @endphp
-                        @foreach($itemOrders as $itemOrder)
+                        @foreach($itemOrders[$key] as $itemOrder)
 
                           <div class="row mb-3">
                               @php
