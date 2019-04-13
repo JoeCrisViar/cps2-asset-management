@@ -9,7 +9,16 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }} | @yield('title')</title>
-
+      <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/core/jquery.min.js')}}" defer></script>
+    <script src="{{ asset('js/core/popper.min.js') }}" defer></script>
+    <script src="{{ asset('js/core/bootstrap-material-design.min.js') }}"></script>
+    <script src="https://unpkg.com/default-passive-events" defer></script>
+    <script src="{{ asset('js/plugins/perfect-scrollbar.jquery.min.js') }}" defer></script>
+    <script src="{{ asset('js/plugins/bootstrap-notify.js') }}" defer></script>
+    <script src="{{ asset('js/material-dashboard.js?v=2.1.0') }}" defer></script>
+    @yield('specified_js')
    
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     
@@ -127,9 +136,9 @@
                         </p>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                        @if(Auth::user()->role_id == 3 || Auth::user()->role_id == 2)
+                      
                         <a href="{{ route('myaccount')}}" class="dropdown-item">My Account</a>
-                        @endif
+                   
                         <a class="dropdown-item" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                                          document.getElementById('logout-form').submit();">
@@ -186,16 +195,7 @@
 
         </div>
     </div>
-     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/core/jquery.min.js') }}" ></script>
-    <script src="{{ asset('js/core/popper.min.js') }}" ></script>
-    <script src="{{ asset('js/core/bootstrap-material-design.min.js') }}"></script>
-    <script src="https://unpkg.com/default-passive-events" ></script>
-    <script src="{{ asset('js/plugins/perfect-scrollbar.jquery.min.js') }}" ></script>
-    <script src="{{ asset('js/plugins/bootstrap-notify.js') }}"></script>
-    <script src="{{ asset('js/material-dashboard.js?v=2.1.0') }}"></script>
-    @yield('specified_js')
+   
     <script>
           const x = new Date().getFullYear();
           let date = document.getElementById('date');
