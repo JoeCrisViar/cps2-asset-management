@@ -42,7 +42,7 @@
                               <div class="col-lg-2"><img class="card-img-top" src="{{ asset('images/' . $item->image_path) }}" alt="Card image cap" style="width: 100px;"></div>
                             	<div class="col-lg-4 mt-4">{{ $item->model }}</div>
                             	<div class="col-lg-1 mt-4">Qty: {{ $itemOrder->quantity }}</div>
-                            	<div class="col-lg-2 offset-lg-1 mt-4">{{ $order->status_id == 1 ? 'for delivery' : 'delivered' }}</div>	
+                            	<div class="col-lg-2 offset-lg-1 mt-4">{{ $order->status->name }}</div>	
                             	<div class="col-lg-2 mt-4">{{ $order->status_id == 2 ? $order->updated_at->diffForHumans() : '' }}</div>
                           </div>
                         @endforeach

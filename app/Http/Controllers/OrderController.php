@@ -6,6 +6,7 @@ use App\Order;
 use App\Item;
 use App\ItemOrder;
 use App\Serial;
+use App\User;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -122,9 +123,18 @@ class OrderController extends Controller
         
         $itemOrders = ItemOrder::all()->where('order_id', $order->id);
         
-        $items = Item::all();
+        $sellers = [];
         
-        return view('users.show_mytransaction', compact('order', 'items' ,'itemOrders'));
+        foreach ($itemOrders as $key => $itemOrder) {
+            $sellers[$key] = User::find($itemOrder->seller_id);    
+        }
+
+
+        $items = Item::all();
+
+
+        
+        return view('users.show_mytransaction', compact('order', 'items' ,'itemOrders', 'sellers'));
     }
 
     public function mytransaction_serials($order, $item)
@@ -133,5 +143,12 @@ class OrderController extends Controller
         $serials = Serial::all()->where('transaction_id', $order)->where('item_id', $item);
         // dd($serials);
         return view('users.transaction_serial', compact('serials'));
+    }
+
+    public function seller_transaction()
+    {
+        $ordered_items = ItemOrder::all()->where('seller_id', Auth::user()->id);
+        // Loop here to get list of ORDERS
+        return view('iamSeller.transactions.index');
     }
 }

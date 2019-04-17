@@ -238,6 +238,7 @@ class CartController extends Controller
 
             $itemOrder->item_id = $item_id;
             $itemOrder->order_id = $order->id;
+            $itemOrder->seller_id = $item->user->id ;
             $itemOrder->quantity = $quantity;
             $itemOrder->price = $item->price;
 

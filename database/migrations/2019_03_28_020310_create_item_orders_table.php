@@ -17,6 +17,7 @@ class CreateItemOrdersTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('item_id');
             $table->unsignedBigInteger('order_id');
+            $table->bigInteger('seller_id');
             $table->bigInteger('quantity');
             $table->float('price', 8, 2);
             $table->timestamps();

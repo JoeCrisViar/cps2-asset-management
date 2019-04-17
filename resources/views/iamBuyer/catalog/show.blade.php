@@ -72,7 +72,10 @@
                         <span class="badge badge-dark">Out of Stock</span>
                     @endif
                 </div>
-                
+                <div class="col-lg-2"><h5>Sold by :</h5></div>
+                <div class="col-lg-2">
+                 {{ $item->user->username }}
+                </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">

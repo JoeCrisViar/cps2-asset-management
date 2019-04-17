@@ -19,18 +19,33 @@
                          $itemOrders->where('order_id', $order->id);
                          $summary = 0;
                 @endphp
-	          	@foreach($itemOrders as $itemOrder)
+	          	@foreach($itemOrders as $key => $itemOrder)
 	          		@php
 	                    $item = $items->where('id', $itemOrder->item_id)->first();
 	                	$summary += ($itemOrder->quantity * $itemOrder->price);
 	                @endphp
 	                <div class="row">
-	                	<div class="col-lg-2"><img class="card-img-top" src="{{ asset('images/' . $item->image_path) }}" alt="Card image cap" style="width: 100px;"></div>
-	                	<div class="col-lg-4 mt-4"><a href="{{ route('mytransaction_serials', [$order->id, $item->id]) }}">{{ $item->model }}</a></div>
-	                	<div class="col-lg-1 mt-4">Qty: {{ $itemOrder->quantity }}</div>
-	                	<div class="col-lg-1 mt-4">&#8369; {{ number_format($itemOrder->price) }}</div>
-	                	<div class="col-lg-2 offset-lg-1 mt-4">{{ $order->status_id == 1 ? 'for delivery' : 'delivered' }}</div>	
-	                	<div class="col-lg-2 mt-4">{{ $order->status_id == 2 ? $order->updated_at->diffForHumans() : '' }}</div>
+	                	<div class="col-lg-2">
+	                		<img class="card-img-top" src="{{ asset('images/' . $item->image_path) }}" alt="Card image cap" style="width: 100px;">
+	                	</div>
+	                	<div class="col-lg-3 mt-4">
+	                		<a href="{{ route('mytransaction_serials', [$order->id, $item->id]) }}">{{ $item->model }}</a>
+	                	</div>
+	                	<div class="col-lg-1 mt-4">
+	                		Qty: {{ $itemOrder->quantity }}
+	                	</div>
+	                	<div class="col-lg-1 mt-4">
+	                		&#8369; {{ number_format($itemOrder->price) }}
+	                	</div>
+	                	<div class="col-lg-2 mt-4">
+	                		{{ $order->status_id == 1 ? 'for delivery' : 'delivered' }}
+	                	</div>	
+	                	<div class="col-lg-1 mt-4">
+	                		{{ $order->status_id == 2 ? $order->updated_at->diffForHumans() : '' }}
+	                	</div>
+	                	<div class="col-lg-2 mt-4">
+	                		Sold by: {{ $sellers[$key]->username }}
+	                	</div>
 	                </div>
 	          	@endforeach
                 </div>

@@ -28,4 +28,9 @@ class Order extends Model
     {
         return $this->hasMany('App\Serial');
     }
+
+    public function status()
+    {
+        return $this->belongsTo('App\Status');
+    }
 }

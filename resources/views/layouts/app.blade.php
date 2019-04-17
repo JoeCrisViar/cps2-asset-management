@@ -13,11 +13,11 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/core/jquery.min.js')}}" defer></script>
     <script src="{{ asset('js/core/popper.min.js') }}" defer></script>
-    <script src="{{ asset('js/core/bootstrap-material-design.min.js') }}"></script>
+    <!-- <script src="{{ asset('js/core/bootstrap-material-design.min.js') }}"></script> -->
     <script src="https://unpkg.com/default-passive-events" defer></script>
     <script src="{{ asset('js/plugins/perfect-scrollbar.jquery.min.js') }}" defer></script>
     <script src="{{ asset('js/plugins/bootstrap-notify.js') }}" defer></script>
-    <script src="{{ asset('js/material-dashboard.js?v=2.1.0') }}" defer></script>
+    <script src="{{ asset('js/material-dashboard.js') }}" defer></script>
     @yield('specified_js')
    
     <script async defer src="https://buttons.github.io/buttons.js"></script>
@@ -52,19 +52,30 @@
           <div class="sidebar-wrapper">
             <ul class="nav">
               <li class="nav-item {{ request()->is('home') ? 'active' : ''  }}">
-                <a class="nav-link" href="{{ route('home') }}">
-                  <i class="material-icons">home</i>
-                  <p>Home</p>
-                </a>
+                  <a class="nav-link" href="{{ route('home') }}">
+                    <i class="material-icons">home</i>
+                    <p>Home</p>
+                  </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ route('catalog.index', 0) }}">
-                  <i class="material-icons">category</i>
-                  <p>Catalog</p>
-                </a>
-                  
-              </li>
-      
+              
+              @guest
+
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ route('catalog.index', 0) }}">
+                    <i class="material-icons">category</i>
+                    <p>Catalog</p>
+                  </a>
+                </li>
+              @else
+                @if(Auth::user()->role_id == 3)
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ route('catalog.index', 0) }}">
+                    <i class="material-icons">category</i>
+                    <p>Catalog</p>
+                  </a>
+                </li>
+                @endif
+              @endguest
             </ul>
           </div>
         </div>
@@ -92,17 +103,17 @@
                   </div>
                 </form> -->
                 <ul class="navbar-nav">
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{ route('cart.index') }}">
-                      <i class="material-icons">shopping_cart</i>
-                      <span class="notification">{{ collect(Session::get('cart'))->sum() }}</span>
-                      <p class="d-lg-none d-md-block">
-                        Stats
-                      </p>
-                    </a>
-                  </li>
 
                 @guest
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{ route('cart.index') }}">
+                        <i class="material-icons">shopping_cart</i>
+                        <span class="notification">{{ collect(Session::get('cart'))->sum() }}</span>
+                        <p class="d-lg-none d-md-block">
+                          Stats
+                        </p>
+                      </a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                     </li>
@@ -112,20 +123,38 @@
                         </li>
                     @endif
                 @else
-                  @if(Auth::user()->role_id == 3 || Auth::user()->role_id == 2)
+                  @if(Auth::user()->role_id == 3)
                       <!-- Buyers Nav here -->
+                      <li class="nav-item">
+                        <a class="nav-link" href="{{ route('cart.index') }}">
+                          <i class="material-icons">shopping_cart</i>
+                          <span class="notification">{{ collect(Session::get('cart'))->sum() }}</span>
+                          <p class="d-lg-none d-md-block">
+                            Stats
+                          </p>
+                        </a>
+                      </li>
                       <li class="nav-item">
                         <a class="nav-link" href="{{ route('mytransaction') }}">My Orders</a>  
                       </li>
                   @endif
                   @if(Auth::user()->role_id == 2)
+                  <!-- Seller's Nav here -->
                   <li class="nav-item">
-                      <!-- Seller's Nav here -->
+                      <a class="nav-link" href="#">
+                        <i class="material-icons">notifications</i>
+                        <span class="notification">{{ collect(Session::get('seller_notif'))->sum() }}</span>
+                        <p class="d-lg-none d-md-block">
+                          Stats
+                        </p>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="{{ route('seller_transaction') }}">Transactions</a>
+                  </li>
+                  <li class="nav-item">
                       <a class="nav-link" href="{{ route('item.index') }}">My Items</a>
                   </li>
-                  @endif
-                  @if(Auth::user()->role_id == 1)
-                    <!-- Admin Nav here -->
                   @endif
                   <li class="nav-item dropdown">
                     <a class="nav-link" href="javscript:void(0)" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

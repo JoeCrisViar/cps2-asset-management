@@ -17,10 +17,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //  Item Routes (Seller)
 Route::resource('/item', 'ItemController');
-// View specific seller's stocks
-Route::resource('/item/{items}/stock', 'SerialController');
+	// View specific seller's stocks
+Route::resource('/item/{items}/serial', 'SerialController');
 
-// Catalog Route (Buyers & Sellers) 
+Route::get('/transactions', 'OrderController@seller_transaction')->name('seller_transaction');
+
+
+
+// Catalog Route (Buyers) 
 Route::get('/catalog/{category_id}', 'ItemController@catalog_index')->name('catalog.index');
 
 Route::get('/catalog/{item}/show', 'ItemController@catalog_show')->name('catalog.show');
@@ -64,4 +68,4 @@ Route::get('/admin', 'AdminController@index');
 
 Route::get('/userslist/{role}', 'UserController@user_home')->name('user.home');
 
-Route::resource('/transactions', 'OrderController');
+Route::resource('/transactions_history', 'OrderController');

@@ -20,9 +20,9 @@ class Item extends Model
         'brand_id',
     ];
 
-    public function users()
+    public function user()
     {
-        return $this->belongsToMany('App\User');
+        return $this->belongsTo('App\User');
     }
 
     public function serials()
