@@ -11,9 +11,9 @@
     <title>{{ config('app.name', 'Laravel') }} | @yield('title')</title>
       <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/core/jquery.min.js')}}" defer></script>
-    <script src="{{ asset('js/core/popper.min.js') }}" defer></script>
-    <!-- <script src="{{ asset('js/core/bootstrap-material-design.min.js') }}"></script> -->
+    <script src="{{ asset('js/core/jquery.min.js')}}"></script>
+    <script src="{{ asset('js/core/popper.min.js') }}"></script>
+    <script src="{{ asset('js/core/bootstrap-material-design.min.js') }}" defer></script>
     <script src="https://unpkg.com/default-passive-events" defer></script>
     <script src="{{ asset('js/plugins/perfect-scrollbar.jquery.min.js') }}" defer></script>
     <script src="{{ asset('js/plugins/bootstrap-notify.js') }}" defer></script>

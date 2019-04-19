@@ -149,6 +149,10 @@ class OrderController extends Controller
     {
         $ordered_items = ItemOrder::all()->where('seller_id', Auth::user()->id);
         // Loop here to get list of ORDERS
-        return view('iamSeller.transactions.index');
+        $orders = [];
+        // foreach ($ordered_items as $key => $ordered_item) {
+        //    $orders[$key] = Order::all()->where()
+        // }
+        return view('iamSeller.transactions.index', compact('ordered_items'));
     }
 }
